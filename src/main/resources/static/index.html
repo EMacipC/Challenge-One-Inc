@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<title>Spreadsheet</title>
+
+</head>
+<body>
+
+<div ng-app="workSheet" ng-controller="ctrlWorkSheet">
+	<div class="w-100 navbar bg-primary ">
+		<div class= "col-4">
+			<button type="button" class="btn btn-info btn-lg navbar-brand" data-toggle="modal" data-target="#new">New</button>
+		</div>
+		<div class="col-4 navbar-brand ">
+			<p>Worksheet</p>
+		</div>
+		<div class="col-4 navbar-brand ">
+			<p>Total Amount:{{total|currency}}</p>
+		</div>
+	</div>
+	<div class="modal fade" id="new" role="dialog">
+    <div class="modal-dialog">
+    
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">New</h4>
+        </div>
+        <div class="modal-body">
+        <!-- Description -->
+           <div class="form-group">
+           <div id="alert"></div>
+   				<label for="exampleFormControlTextarea1">Description</label>
+    			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" ng-model="modelDescription"></textarea>
+		 	 	
+	 	 	</div>
+	 	 	<div class="container">
+	 	 	<!-- Dates -->
+				  <div class="form-group">
+				  <label for="example-date-input" class="col-2 col-form-label">Date</label>
+				    <input class="form w-50" type="date" id="example-date-input" ng-model="modelDate">
+				    
+				  </div>
+		        <!-- Amount -->
+		    <div class="form-group">
+				<label for="formGroupExampleInput">Amount</label>
+				<input type="text" class="form w-50" id="formGroupExampleInput"placeholder="Amount" ng-model="modelAmount">
+			</div>
+		    </div>
+		</div>
+    </div>
+    	
+       	 	<div class="modal-footer">
+          		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          		<button type="button" class="btn bg-primary" data-dismiss="modal" ng-click="submit()" id="submit">Submit</button>
+       		</div>
+       		
+      	</div>
+    </div>
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Description</th>
+					<th scope="col">Date</th>
+					<th scope="col">Actions</th>
+					<th scope="col">Amount</th>
+				</tr>
+			</thead>
+			<tr ng-repeat="x in input" >
+				<th scope="row">{{x.id}}</th>
+				<td>{{x.description}}</td>
+				<td>{{x.date}}</td>
+				<td id="action"></td>
+				<td>{{x.amount|currency}}</td>
+			</tr>
+		</table>
+		
+		<div class="modal fade" id="edit" role="dialog">
+    <div class="modal-dialog">
+    
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit</h4>
+        </div>
+        <div class="modal-body">
+        <!-- Description -->
+           <div class="form-group">
+           <div id="editalert"></div>
+   				<label for="exampleFormControlTextarea1">Description</label>
+    			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" ng-model="editDescription"></textarea>
+		 	 	
+	 	 	</div>
+	 	 	<div class="container">
+	 	 	<!-- Dates -->
+				  <div class="form-group">
+				  <label for="example-date-input" class="col-2 col-form-label">Date</label>
+				    <input class="form w-50" type="date" id="example-date-input" ng-model="editDate">
+				    
+				  </div>
+		        <!-- Amount -->
+		    <div class="form-group">
+				<label for="formGroupExampleInput">Amount</label>
+				<input type="text" class="form w-50" id="formGroupExampleInput"placeholder="Amount" ng-model="editAmount">
+			</div>
+		    </div>
+		</div>
+    </div>
+    	
+       	 	<div class="modal-footer">
+          		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          		<button type="button" class="btn bg-primary" data-dismiss="modal" ng-click="edit()" id="edit" >Edit</button>
+       		</div>
+       		
+      	</div>
+    </div>
+	</div>
+
+
+<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
