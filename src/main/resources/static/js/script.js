@@ -29,11 +29,10 @@ app.controller('ctrlWorkSheet', function($scope, $http) {
     	
     	  $scope.edit=function(){
     			editProof(x,$scope);
-			   $http.put('http://localhost:8080/input/'+(x+1),{
+			   $http.put('http://localhost:8080/input/'+$scope.input[x].id,{
 			    	description:$scope.editDescription,
 					date:$scope.editDate,
-					amount:$scope.editAmount,
-					id:(x+1)
+					amount:$scope.editAmount
 			    });	 
     	} 
     }
@@ -42,7 +41,7 @@ app.controller('ctrlWorkSheet', function($scope, $http) {
         $scope.input.splice(x, 1);
         console.log(x);
         sumatoria($scope.input,$scope);
-        $http.delete('http://localhost:8080/input/'+(x+1))
+        $http.delete('http://localhost:8080/input/'+$scope.input[x].id)
     }
     sumatoria($scope.input,$scope); 
 });
